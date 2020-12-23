@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>报数</title>
+</head>
+<body>
+   <script>
+      // 方法一 递归
+      const countAndSay = (n) => {
+         if (n === 1) {
+            return '1';
+         }
+
+         const result = countAndSay(n - 1);
+         /**
+          * \d 匹配一个数字
+          * \1 匹配前面第一个括号内匹配到的内容
+          * (\d)\1* 匹配相邻数字相同的内容
+          * 使用replace方法将匹配到的内容处理为长度 + 内容的第一个字符
+          * 结果为所求报数
+          **/
+         return result.replace(/(\d)\1*/g, item => `${item.length}${item[0]}`);
+      };
+
+      console.log(countAndSay(1));
+      console.log(countAndSay(2));
+      console.log(countAndSay(3));
+      console.log(countAndSay(4));
+      console.log(countAndSay(5));
+      console.log(countAndSay(6));
+      console.log('--------------------');
+
+      // 方法二 循环法
+      const countAndSay1 = (n) => {
+         let result = '1';
+         for (let i = 1; i < n; i++) {
+            result = result.replace(/(\d)\1*/g, item => `${item.length}${item[0]}`);
+         }
+
+         return result;
+      };
+
+      console.log(countAndSay1(1));
+      console.log(countAndSay1(2));
+      console.log(countAndSay1(3));
+      console.log(countAndSay1(4));
+      console.log(countAndSay1(5));
+      console.log(countAndSay1(6));
+
+   </script>
+</body>
+</html>

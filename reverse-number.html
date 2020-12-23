@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>翻转数字</title>
+</head>
+<body>
+   <script>
+      // 方法一 翻转数字
+      const reverse = (x) => {
+         if (typeof x !== 'number') {
+            return;
+         }
+         // 极值
+         const MAX = 2147483647;
+         const MIN = -2147483648;
+         // 识别数字剩余部分并翻转
+         let rest = x > 0
+            ? String(x)
+            .split('')
+            .reverse('')
+            .join('')
+            :String(x)
+            .slice(1)
+            .split('')
+            .reverse('')
+            .join('');
+         // 转换为正常值，区分正负数
+         let result = x > 0 ? parseInt(rest, 10) : 0 - parseInt(rest, 10);
+         if (result >= MIN && result <= MAX) {
+            return result;
+         }
+         return 0;
+      };
+
+      console.log(reverse(1234567890));
+      console.log(reverse(12345678901));
+      console.log(reverse(-12345678901));
+      console.log(reverse(-12345678901234));
+      console.log(reverse(21474836479));
+
+      // 方法二 翻转数字 欧几里得
+      // 通过模 10 取到最低位，然后又通过乘 10 将最低位迭代到最高位，完成翻转。
+      const reverse1 = (x) => {
+         // 获取相应数的绝对值
+         let int = Math.abs(x);
+         // 极值
+         const MAX = 2147483647;
+         const MIN = -2147483648;
+         let num = 0;
+
+         // 遍历循环生成每一位数字
+         while(int !== 0) {
+            // 借鉴欧几里得算法，从 num 的最后一位开始取值拼成新的数
+            num = (int % 10) + (num * 10);
+            // 剔除掉被消费的部分
+            int = Math.floor(int / 10);
+         }
+         // 异常值
+         if (num <= MIN || num >= MAX) {
+            return 0;
+         }
+         if (x < 0) {
+            num = -1 * num;
+         }
+         return num;
+      };
+
+      console.log(reverse1(1234567890));
+      console.log(reverse1(12345678901));
+      console.log(reverse1(-12345678901));
+      console.log(reverse1(21474836479));
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>字母异位词</title>
+</head>
+<body>
+   <script>
+      // 方法一
+      const isAnagram = (s, t) => {
+         const sArr = s.split('');
+         const tArr = t.split('');
+         const sortFn = (a, b) => {
+            return a.charCodeAt() - b.charCodeAt();
+         };
+         sArr.sort(sortFn);
+         tArr.sort(sortFn);
+         return sArr.join('') === tArr.join('');
+      };
+
+      let s = "anagram";
+      let t = "nagaram";
+      console.log(isAnagram(s, t));
+
+      let s1 = "rat";
+      let t1 = "car";
+      console.log(isAnagram(s1, t1));
+
+      // 方法二
+      const isAnagram1 = (s, t) => {
+         const hash = {};
+
+         for(let k of s) {
+            hash[k] = hash[k] || 0;
+            hash[k] += 1;
+         }
+
+         for(let k of t) {
+            if(!hash[k]) {
+               return false;
+            }
+            hash[k] -= 1;
+         }
+
+         return true;
+      }
+
+      let s111 = "anagram";
+      let t111= "nagaram";
+      console.log(isAnagram1(s111, t111));
+
+      let s11 = "rat";
+      let t11 = "car";
+      console.log(isAnagram1(s11, t11));
+   </script>
+</body>
+</html>
