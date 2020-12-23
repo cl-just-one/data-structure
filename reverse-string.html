@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>反转字符串</title>
+</head>
+<body>
+   <script>
+      // 方法一  首尾替换法
+      const reverseString = (s) => {
+         for (let i = 0; i < s.length / 2; i++) {
+            [s[i], s[s.length - 1 - i]] = [s[s.length - 1 - i], s[i]];
+         }
+         return s;
+      };
+
+      let s = ["h","e","l","l","o"];
+      console.log(reverseString(s));
+      console.log('--------------------');
+
+      // 方法二 中间变量首尾替换法
+      const reverseString1 = (s) => {
+         for (let i = 0; i < s.length / 2; i++) {
+            let a = s[i];
+            s[i] = s[s.length - 1 - i];
+            s[s.length - 1 - i] = a;
+         }
+         return s;
+      };
+
+      let s1 = ["h","e","l","l","o"];
+      console.log(reverseString1(s1));
+      console.log('--------------------');
+   </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>最长公共前缀</title>
+</head>
+<body>
+   <script>
+      // 方法一 递归
+      const longestCommonPrefix = (strs) => {
+
+         function findCommonPrefix(a, b) {
+            let i = 0;
+            while(i < a.length && i < b.length && a.charAt(i) === b.charAt(i)) {
+               i++;
+            }
+            return i > 0 ? a.substring(0, i) : '';
+         }
+
+         if (strs.length) {
+            let commonPrefix = strs[0];
+            for (let i = 1; i < strs.length; i++) {
+               commonPrefix = findCommonPrefix(commonPrefix, strs[i]);
+            }
+            return commonPrefix;
+         }
+         return '';
+      };
+
+      let strs = ["flower","flow","flight"];
+      console.log(longestCommonPrefix(strs));
+
+      // 方法二 循环迭代
+      
+   </script>
+</body>
+</html>
