@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>罗马数字转整数</title>
+</head>
+<body>
+   <script>
+      // 方法一 遍历
+      const romanToIntOne = (num) => {
+         // 特殊值
+         const roman = {
+            IV: 4,
+            IX: 9,
+            XL: 40,
+            XC: 90,
+            CD: 400,
+            CM: 900,
+         };
+         // 基础值
+         const list = {
+            I: 1,
+            V: 5,
+            X: 10,
+            L: 50,
+            C: 100,
+            D: 500,
+            M: 1000,
+         };
+
+         let result = 0;
+         for (const key in roman) {
+            if(num.includes(key)) {
+               const reg = new RegExp(key);
+               num.replace(reg, '');
+               result += roman[key];
+            }
+         }
+
+         for (const i of num) {
+            result += list[i];
+         }
+
+         return result;
+      }
+      console.log(romanToIntOne('X'));
+      console.log(romanToIntOne('XII'));
+      console.log('---------------');
+
+      // 方法二 switch + includes
+      const romanToIntOne1 = (num) => {
+         let result = 0;
+         for (const key of num) {
+            switch(key) {
+               case 'I':
+                  result += 1;
+                  break;
+               case 'V':
+                  result += 5;
+                  break;
+               case 'X':
+                  result += 10;
+                  break;
+               case 'L':
+                  result += 50;
+                  break;
+               case 'C':
+                  result += 100;
+                  break;
+               case 'D':
+                  result += 500;
+                  break;
+               case 'M':
+                  result += 1000;
+                  break;
+            }
+         }
+         // 如果是IV和IC多加2
+         if (num.includes('IV') || num.includes('IC')) {
+            result -= 2;
+         }
+         // 如果是IV和IC多加20
+         if (num.includes('XL') || num.includes('XC')) {
+            result -= 20;
+         }
+         // 如果是IV和IC多加200
+         if (num.includes('CD') || num.includes('CM')) {
+            result -= 200;
+         }
+         return result;
+      };
+      console.log(romanToIntOne1('X'));
+      console.log(romanToIntOne1('XII'));
+
+   </script>
+</body>
+</html>

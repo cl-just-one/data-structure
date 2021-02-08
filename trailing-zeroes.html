@@ -1,0 +1,48 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-08 11:28:47
+ * @LastEditTime: 2021-02-08 14:16:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \data-structure\trailing-zeroes.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>阶乘后的零</title>
+</head>
+<body>
+   <script>
+      // 方法一 暴力法
+      const trailingZeroes = function(n) {
+         let count = 0;
+         for (let i = 1; i <= n; i++) {
+            let num = i;
+            if (num % 5 == 0) {
+               while(num % 5 == 0 && num != 0) {
+                  count += 1;
+                  num = parseInt(num / 5);
+               }
+            }
+         }
+         return count;
+      }
+      console.log(trailingZeroes(10));
+      console.log('----------------------');
+
+      // 方法二
+      const trailingZeroes1 = function(n) {
+         let count = 0;
+         while(n > 0) {
+            n = parseInt(n / 5);
+            count += n;
+         }
+         return count;
+      }
+      console.log(trailingZeroes1(10));
+      console.log('----------------------');
+   </script>
+</body>
+</html>

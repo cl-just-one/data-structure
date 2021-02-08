@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>3的幂</title>
+</head>
+<body>
+   <script>
+      // 方法一 循环求解
+      const isPowerOfThree = (n) => {
+         if (n < 1) {
+            return false;
+         }
+         while(n > 1) {
+            // 如果该数字不能被 3 整除，则直接输出 false
+            if (n % 3 != 0) {
+               return false;
+            } else {
+               n = n / 3;
+            }
+         }
+         return true;
+      };
+      console.log(isPowerOfThree(81));
+      console.log('-------------------');
+
+      // 方法一 递归求解
+      const isPowerOfThree1 = (n) => {
+         if (n <= 0) {
+            return false;
+         }
+         if (n == 1) {
+            return true;
+         }
+
+         if (n % 3 == 0) {
+            return isPowerOfThree1(n / 3);
+         }
+         
+         return false;
+      };
+      console.log(isPowerOfThree1(15));
+      console.log('--------------------');
+
+      // 方法三 神奇的解法
+      const isPowerOfThree2 = (n) => {
+         if (n <= 0) {
+            return false;
+         }
+         // 3的最大幂
+         const maxPower = parseInt(Math.log(0xfffffff) / Math.log(3));
+         // 求3的最大次幂
+         const maxValue = Math.pow(3, maxPower);
+         // 判断该值是否能整除待定值 n
+         return maxValue % n == 0;
+      }
+      console.log(isPowerOfThree2(81));
+
+   </script>
+</body>
+</html>

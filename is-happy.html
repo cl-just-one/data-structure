@@ -1,0 +1,70 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-02-08 09:57:01
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-02-08 11:08:41
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>快乐数</title>
+</head>
+<body>
+   <script>
+      // 方法一 尾递归1
+      const fn = function(n, once) {
+         if (once[n]) {
+            return false;
+         }
+         let result = 0;
+         const list = n.toString().split('');
+         once[n] = true;
+         list.forEach(val => {
+            result += Math.pow(parseInt(val, 10), 2);
+         });
+         if (result == 1) {
+            return true;
+         } else {
+            return fn(result, once);
+         }
+      };
+      /**
+       * 
+       * @param {number} n
+       * @return {boolean}
+       */
+      const isHappy = function(n) {
+         const once = {};
+         return fn(n, once);
+      };
+      console.log(isHappy(10));
+      console.log('-------------');
+
+      // 方法一 尾递归2
+      const isHappy1 = function(n) {
+         if (n == 1) {
+            return true;
+         }
+         if (n == 4) {
+            return false;
+         }
+         let result = 0;
+         const list = n.toString().split('');
+         list.forEach(val => {
+            result += Math.pow(parseInt(val, 10), 2);
+         });
+         if (result == 1) {
+            return true;
+         } else {
+            return isHappy1(result);
+         }
+      }
+      console.log(isHappy1(19));
+      console.log('-------------');
+   </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Excel表列序号</title>
+</head>
+<body>
+   <script>
+      const titleToNumber = (s) => {
+         let sum = 0;
+         let i = s.length - 1;
+         let carry = 1;
+         while(i >= 0) {
+            let cur = s[i].charCodeAt() - 64;
+            sum = carry * cur;
+            carry *= 26;
+            i--;
+         }
+         return sum;
+      };
+      console.log(titleToNumber('AA'));
+
+   </script>
+</body>
+</html>

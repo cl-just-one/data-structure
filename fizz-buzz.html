@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fizz Buzz</title>
+</head>
+<body>
+   <script>
+      // 方法一 遍历
+      const fizzBuzz = (n) => {
+         let arr = [];
+         for (let i = 1; i <= n; i++) {
+            if (i % 15 == 0) {
+               arr.push('FizzBuzz');
+            } else if (i % 3 == 0) {
+               arr.push('Fizz');
+            } else if (i % 5 == 0) {
+               arr.push('Buzz');
+            } else {
+               arr.push(i.toString());
+            }
+         }
+         return arr;
+      };
+      console.log(fizzBuzz(15));
+      console.log('--------------');
+      // 方法二 字符串累加
+      const fizzBuzz1 = (n) => {
+         let arr = [];
+         for (let i = 1; i <= n; i++) {
+            let str = '';
+            if (i % 3 == 0) {
+               str += 'Fizz';
+            }
+            if (i % 5 == 0) {
+               str += 'Buzz';
+            }
+            if (i % 3 != 0 && i % 5 != 0) {
+               str += i;
+            }
+            arr.push(str);
+         }
+         return arr;
+      };
+      console.log(fizzBuzz1(15));
+   </script>
+</body>
+</html>

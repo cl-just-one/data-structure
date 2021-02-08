@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>最长回文子串</title>
+</head>
+<body>
+   <script>
+      // 方法一 最长回文子串
+      const longestPlaindrome = (s) => {
+         const dp = [];
+         for (let i = 0; i < array.length; i++) {
+            dp[i] = [];
+         }
+
+         let max = -1;
+         let str = '';
+         for (let l = 0; l < s.length; l++) {
+            for (let i = 0; l + i < s.length; i++) {
+               let j = i + l;
+               if (l == 0) {
+                  dp[i][j] = true;
+               } else if (l <= 2) {
+                  if(s[i] == s[j]) {
+                     dp[i][j] = true;
+                  } else {
+                     dp[i][j] = false;
+                  }
+               }
+            }
+         }
+      }
+   </script>
+</body>
+</html>
